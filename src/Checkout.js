@@ -3,6 +3,7 @@ import "./Checkout.css";
 import CheckoutProduct from "./CheckoutProduct";
 import { useStateValue } from "./StateProvider";
 import Subtotal from "./Subtotal";
+import { userName } from "./reducer";
 
 function Checkout() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -16,7 +17,10 @@ function Checkout() {
           alt="Random"
         />
         <div>
-          <h3>{user.email}</h3>
+          <h3 className="greetings__checkout">
+            {" "}
+            Hello, {user ? userName(user?.email) : "Guest"}
+          </h3>
           <h2 className="checkout__title">Your Shopping Basket</h2>
           {basket.map((item) => (
             <CheckoutProduct
